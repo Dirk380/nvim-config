@@ -1,7 +1,7 @@
 require"catppuccin".setup {
-flavour = "frappe",
+flavour = "macchiato",
   background = {
     dark = "mocha"},
-transparent_background = false 
+transparent_background = false
 }
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-macchiato"
