@@ -7,6 +7,7 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
+  {"nvimtools/none-ls.nvim"},
   {
   "nvim-tree/nvim-tree.lua",
       version = "*",
