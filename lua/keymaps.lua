@@ -47,4 +47,7 @@ vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 vim.keymap.set("n", "K", vim.lsp.buf.hover,{})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+
+-- Non-ls keymaps
+vim.keymap.set('n', '<leader>gf', vim.lsp.buf.format, {})
 -- vim: ts=2 sts=2 sw=2 et
