@@ -117,4 +117,18 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+-- helm setup
+local lspconfig = require('lspconfig')
+
+lspconfig.helm_ls.setup {
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
+  }
+}
+
+
 -- vim: ts=2 sts=2 sw=2 et

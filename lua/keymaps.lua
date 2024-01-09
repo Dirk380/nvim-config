@@ -50,4 +50,9 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
 
 -- Non-ls keymaps
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.format, {})
+
+-- java keymap
+vim.keymap.set("n", "<F5>", function()
+  vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
+end, { silent = true })
 -- vim: ts=2 sts=2 sw=2 et

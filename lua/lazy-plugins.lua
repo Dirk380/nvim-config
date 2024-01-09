@@ -7,14 +7,22 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
-  {"nvimtools/none-ls.nvim"},
   {
-  "nvim-tree/nvim-tree.lua",
-      version = "*",
-      lazy = false,
-      dependencies = {
-        "nvim-tree/nvim-web-devicons",
-      },
+    'towolf/vim-helm'
+  },
+  {
+    'mfussenegger/nvim-jdtls',
+  },
+  {
+    'nvimtools/none-ls.nvim',
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
   },
   'tpope/vim-fugitive',
   'catppuccin/nvim',
@@ -61,7 +69,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -182,7 +190,7 @@ require('lazy').setup({
         end,
       },
       {
-        'nvim-telescope/telescope-ui-select.nvim'
+        'nvim-telescope/telescope-ui-select.nvim',
       },
     },
   },
