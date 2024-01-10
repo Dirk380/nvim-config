@@ -8,6 +8,12 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
   {
+  "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers",
+    -- tag = "*",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  {
     'towolf/vim-helm'
   },
   {
