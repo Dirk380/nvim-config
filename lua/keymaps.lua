@@ -55,4 +55,8 @@ vim.keymap.set('n', '<leader>gr', vim.lsp.buf.format, {})
 vim.keymap.set("n", "<F5>", function()
   vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
 end, { silent = true })
+
+-- Neorg keymaps
+vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
+
 -- vim: ts=2 sts=2 sw=2 et
