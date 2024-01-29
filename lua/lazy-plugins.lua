@@ -8,6 +8,12 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
   {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "rcarriga/nvim-dap-ui"
+    },
+  },
+  {
   "nvim-neorg/neorg",
     run = ":Neorg sync-parsers",
     -- tag = "*",
