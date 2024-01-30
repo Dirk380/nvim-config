@@ -27,7 +27,7 @@ keymap("n", "<leader>gg", ":Git<cr>", opts)
 keymap("n", "<leader>pp", ":Git push<cr>", opts)
 keymap("n", "<leader>gp", ":Git pull<cr>", opts)
 --Nvimtree
-keymap("n", "<leader>f", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>z", ":NvimTreeToggle<cr>", opts)
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
