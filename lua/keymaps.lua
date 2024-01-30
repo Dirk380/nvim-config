@@ -56,6 +56,10 @@ vim.keymap.set("n", "<F5>", function()
   vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
 end, { silent = true })
 
+vim.keymap.set("n", "<F6>", function ()
+  vim.cmd(":! mvn compile package && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
+end, {silent = true})
+
 -- Neorg keymaps
 vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
 
