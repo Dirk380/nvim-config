@@ -9,7 +9,7 @@ vim.o.hlsearch = false
 vim.opt.relativenumber = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
-
+vim.opt.swapfile = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`

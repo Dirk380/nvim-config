@@ -7,10 +7,14 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
+   {
+    'vim-test/vim-test'
+  },
   {
-    "mfussenegger/nvim-dap",
+    "rcarriga/nvim-dap-ui",
     dependencies = {
-      "rcarriga/nvim-dap-ui"
+      "mfussenegger/nvim-dap"
+
     },
   },
   {
@@ -28,14 +32,14 @@ require('lazy').setup({
   {
     'nvimtools/none-ls.nvim',
   },
-  {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
-    lazy = false,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-  },
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   version = '*',
+  --   lazy = false,
+  --   dependencies = {
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  -- },
   'tpope/vim-fugitive',
   'catppuccin/nvim',
   'tpope/vim-rhubarb',

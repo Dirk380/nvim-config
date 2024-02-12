@@ -29,7 +29,7 @@ require 'lsp-setup'
 -- [[ Configure nvim-cmp ]]
 -- (completion)
 require 'cmp-setup'
-require 'nvim-tree-setup'
+-- require 'nvim-tree-setup'
 require 'toggleterm-setup'
 require 'catppuccin-setup'
 require 'non-ls-setup'

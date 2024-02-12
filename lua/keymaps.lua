@@ -62,5 +62,8 @@ end, {silent = true})
 
 -- Neorg keymaps
 vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
-
+-- DAP keybinds
+local dap = require('dap')
+vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint,{})
+vim.keymap.set('n', '<leader>dc', dap.continue,{})
 -- vim: ts=2 sts=2 sw=2 et
