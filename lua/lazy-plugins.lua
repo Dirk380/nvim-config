@@ -11,9 +11,6 @@ require('lazy').setup({
     'vim-test/vim-test'
   },
   {
-    'vim-test/vim-test'
-  },
-  {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "mfussenegger/nvim-dap"

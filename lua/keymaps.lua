@@ -66,4 +66,11 @@ vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
 local dap = require('dap')
 vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint,{})
 vim.keymap.set('n', '<leader>dc', dap.continue,{})
+-- Vim test
+vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>tf', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>ts', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>tl', ':TestNearest<CR>')
+
+
 -- vim: ts=2 sts=2 sw=2 et
