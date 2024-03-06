@@ -6,14 +6,16 @@
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-
-local on_attach = function(_, bufnr)
-   if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
-    vim.diagnostic.disable(bufnr)
-    vim.defer_fn(function()
-      vim.diagnostic.reset(nil, bufnr)
-    end, 1000)
-  end
+--- Go setup
+-- local on_attach = require("lspconfig").on_attach
+-- local capabilities = require("lspconfig").capabilties
+ local on_attach = function(_, bufnr)
+    if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+     vim.diagnostic.disable(bufnr)
+     vim.defer_fn(function()
+       vim.diagnostic.reset(nil, bufnr)
+     end, 1000)
+   end
   local dap, dapui = require("dap"), require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
@@ -96,12 +98,12 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   jdtls = {},
+  gopls = {},
   -- clangd = {},
-  -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
