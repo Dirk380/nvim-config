@@ -1,4 +1,13 @@
 -- [[ Basic Keymaps ]]
+-- Java Keymaps
+vim.keymap.set("n", "<F3>", function()
+  local var = vim.api.nvim_buf_get_name(0)
+  local className = var:gsub("%.java", "")
+  local result = className:match(".*/(.*)")
+  -- print(var)
+  vim.cmd(':! mvn compile exec:java -q -Dexec.mainClass="nl.cdaas.onboarder.service.' .. result .. '"')
+end)
+
 --Quick close file
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 local keymap = vim.api.nvim_set_keymap
@@ -38,39 +47,50 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
--- Harpoon keymap
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 -- LSP keymaps
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+vim.keymap.set("n", "<leader>ff", ":Format<cr>")
 
--- Non-ls keymaps
-vim.keymap.set('n', '<leader>gr', vim.lsp.buf.format, {})
-
--- java keymap
-vim.keymap.set("n", "<F5>", function()
-  vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
+vim.keymap.set("n", "<F6>", function()
+  vim.cmd(":! mvn compile package -DskipTests && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
 end, { silent = true })
 
-vim.keymap.set("n", "<F6>", function ()
-  vim.cmd(":! mvn compile package && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
-end, {silent = true})
-
 -- Neorg keymaps
-vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
+vim.keymap.set('n', '<leader>no', ":Neorg workspace notes<cr>", opts)
 -- DAP keybinds
 local dap = require('dap')
-vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint,{})
-vim.keymap.set('n', '<leader>dc', dap.continue,{})
+vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, {})
+vim.keymap.set('n', '<leader>dc', dap.continue, {})
 -- Vim test
 vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
 vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
 vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
+vim.keymap.set('n', '<leader>pm', ':! mvn org.pitest:pitest-maven:mutationCoverage<CR>')
+vim.keymap.set('n', '<leader>ps', ':! serve /target/pit-reports/<CR>')
+-- Harpoon
+local harpoon = require('harpoon')
+vim.keymap.set("n", "<leader>aa", function() harpoon:list():append() end)
+vim.keymap.set("n", "<C-f>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-q>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-w>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-e>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-r>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+-- Go keymaps
+vim.keymap.set("n", "<F4>", ':! go run . <CR>')
+
+
+
+vim.keymap.set("n", "<F5>", ':RunMvn<CR>')
+vim.cmd([[command! RunMvn lua RunMaven()]])
+vim.cmd([[command! RunTest lua runMavenCommand]])
 
 
 -- vim: ts=2 sts=2 sw=2 et

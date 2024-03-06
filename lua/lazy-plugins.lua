@@ -29,9 +29,9 @@ require('lazy').setup({
   {
     'mfussenegger/nvim-jdtls',
   },
-  {
-    'nvimtools/none-ls.nvim',
-  },
+  -- {
+  --   'nvimtools/none-ls.nvim',
+  -- },
   -- {
   --   'nvim-tree/nvim-tree.lua',
   --   version = '*',
@@ -47,7 +47,13 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   -- Harpoon for file jumping
-  'ThePrimeagen/harpoon',
+  {
+   "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim",
+     'nvim-telescope/telescope.nvim',
+   }
+  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
