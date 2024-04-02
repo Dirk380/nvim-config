@@ -30,10 +30,9 @@ require 'lsp-setup'
 -- (completion)
 require 'cmp-setup'
 -- require 'nvim-tree-setup'
-require 'toggleterm-setup'
 require 'catppuccin-setup'
-require 'non-ls-setup'
 require 'neorg-setup'
 require 'dap-setup'
+require 'neotest-setup'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

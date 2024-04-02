@@ -7,6 +7,7 @@ local opts = { noremap = true, silent = true }
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set('n', '<leader>ff', ':Format<CR>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -38,11 +39,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
--- Harpoon keymap
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 -- LSP keymaps
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -56,21 +52,55 @@ vim.keymap.set("n", "<F5>", function()
   vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
 end, { silent = true })
 
-vim.keymap.set("n", "<F6>", function ()
+vim.keymap.set("n", "<F6>", function()
   vim.cmd(":! mvn compile package && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
-end, {silent = true})
+end, { silent = true })
 
 -- Neorg keymaps
-vim.keymap.set('n' ,'<leader>no' , ":Neorg workspace notes<cr>", opts)
+vim.keymap.set('n', '<leader>no', ":Neorg workspace notes<cr>", opts)
 -- DAP keybinds
 local dap = require('dap')
-vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint,{})
-vim.keymap.set('n', '<leader>dc', dap.continue,{})
+vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, {})
+vim.keymap.set('n', '<leader>dc', dap.continue, {})
 -- Vim test
-vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
-vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
-vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
-vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
+-- vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
+-- vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
+-- vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
+-- vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
+--Neotest keymaps
+vim.keymap.set('n', '<leader>tf', function()
+  require('neotest').run.run(vim.fn.expand '%')
+end)
+vim.keymap.set('n', '<leader>tT',
+  function()
+    require('neotest').run.run(vim.uv.cwd())
+  end)
+vim.keymap.set('n', '<leader>tn',
+  function()
+    require('neotest').run.run()
+  end)
+vim.keymap.set('n', '<leader>tl',
+  function()
+    require('neotest').run.run_last()
+  end)
+vim.keymap.set('n', '<leader>ts',
+  function()
+    require('neotest').summary.toggle()
+  end)
+vim.keymap.set('n', '<leader>to',
+  function()
+    require('neotest').output.open { enter = true, auto_close = true }
+  end)
+vim.keymap.set('n', '<leader>tO',
+  function()
+    require('neotest').output_panel.toggle()
+  end)
+vim.keymap.set('n', '<leader>tS',
+  function()
+    require('neotest').run.stop()
+  end)
+
+
 
 
 -- vim: ts=2 sts=2 sw=2 et
