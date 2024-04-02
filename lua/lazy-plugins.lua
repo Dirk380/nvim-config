@@ -10,7 +10,7 @@ require('lazy').setup({
   -- {
   --   'vim-test/vim-test'
   -- },
-   {
+  {
     'nvim-neotest/neotest',
     dependencies = {
       'nvim-neotest/nvim-nio',
@@ -28,7 +28,7 @@ require('lazy').setup({
     },
   },
   {
-  "nvim-neorg/neorg",
+    "nvim-neorg/neorg",
     run = ":Neorg sync-parsers",
     -- tag = "*",
     dependencies = { "nvim-lua/plenary.nvim" }
@@ -42,6 +42,7 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'catppuccin/nvim',
   'tpope/vim-rhubarb',
+  'akinsho/toggleterm.nvim',
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   -- Harpoon for file jumping
