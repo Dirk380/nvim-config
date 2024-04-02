@@ -100,7 +100,8 @@ vim.keymap.set('n', '<leader>tS',
     require('neotest').run.stop()
   end)
 
-
+-- Pi-test keymap
+vim.keymap.set('n', '<leader>pm', ':! mvn org.pitest:pitest-maven:mutationCoverage<CR>')
 
 
 -- vim: ts=2 sts=2 sw=2 et
