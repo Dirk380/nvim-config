@@ -7,9 +7,7 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
-  -- {
-  --   'vim-test/vim-test'
-  -- },
+   'vim-test/vim-test',
   {
     'nvim-neotest/neotest',
     dependencies = {
