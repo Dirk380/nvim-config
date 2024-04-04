@@ -27,8 +27,6 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>gg", ":Git<cr>", opts)
 keymap("n", "<leader>pp", ":Git push<cr>", opts)
 keymap("n", "<leader>gp", ":Git pull<cr>", opts)
---Nvimtree
-keymap("n", "<leader>z", ":NvimTreeToggle<cr>", opts)
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -44,16 +42,13 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
 
--- Non-ls keymaps
-vim.keymap.set('n', '<leader>gr', vim.lsp.buf.format, {})
-
 -- java keymap
 vim.keymap.set("n", "<F5>", function()
   vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
 end, { silent = true })
 
 vim.keymap.set("n", "<F6>", function()
-  vim.cmd(":! mvn compile package && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
+  vim.cmd(":! mvn compile package -DskipTests=true && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
 end, { silent = true })
 
 -- Neorg keymaps
@@ -62,46 +57,45 @@ vim.keymap.set('n', '<leader>no', ":Neorg workspace notes<cr>", opts)
 local dap = require('dap')
 vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, {})
 vim.keymap.set('n', '<leader>dc', dap.continue, {})
--- Vim test
--- vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
--- vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
--- vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
--- vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
 --Neotest keymaps
-vim.keymap.set('n', '<leader>tf', function()
+vim.keymap.set('n', '<leader>nf', function()
   require('neotest').run.run(vim.fn.expand '%')
 end)
-vim.keymap.set('n', '<leader>tT',
+vim.keymap.set('n', '<leader>nT',
   function()
     require('neotest').run.run(vim.uv.cwd())
   end)
-vim.keymap.set('n', '<leader>tn',
+vim.keymap.set('n', '<leader>nn',
   function()
     require('neotest').run.run()
   end)
-vim.keymap.set('n', '<leader>tl',
+vim.keymap.set('n', '<leader>nl',
   function()
     require('neotest').run.run_last()
   end)
-vim.keymap.set('n', '<leader>ts',
+vim.keymap.set('n', '<leader>ns',
   function()
     require('neotest').summary.toggle()
   end)
-vim.keymap.set('n', '<leader>to',
+vim.keymap.set('n', '<leader>no',
   function()
     require('neotest').output.open { enter = true, auto_close = true }
   end)
-vim.keymap.set('n', '<leader>tO',
+vim.keymap.set('n', '<leader>nO',
   function()
     require('neotest').output_panel.toggle()
   end)
-vim.keymap.set('n', '<leader>tS',
+vim.keymap.set('n', '<leader>nS',
   function()
     require('neotest').run.stop()
   end)
 
 -- Pi-test keymap
 vim.keymap.set('n', '<leader>pm', ':! mvn org.pitest:pitest-maven:mutationCoverage<CR>')
-
+-- Vim test keymaps
+vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
+vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
+vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
 
 -- vim: ts=2 sts=2 sw=2 et
