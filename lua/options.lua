@@ -7,6 +7,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.opt.relativenumber = true
+vim.opt.number = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 vim.opt.swapfile = false
