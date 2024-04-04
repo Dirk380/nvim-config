@@ -97,5 +97,17 @@ vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
 vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
 vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
-
+-- Spectre keymaps
+vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+  desc = "Toggle Spectre"
+})
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+  desc = "Search current word"
+})
+vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+  desc = "Search current word"
+})
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = "Search on current file"
+})
 -- vim: ts=2 sts=2 sw=2 et
