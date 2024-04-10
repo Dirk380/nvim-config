@@ -33,12 +33,8 @@ require('lazy').setup({
     -- tag = "*",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  {
-    'towolf/vim-helm'
-  },
-  {
-    'mfussenegger/nvim-jdtls',
-  },
+  'towolf/vim-helm',
+  'mfussenegger/nvim-jdtls',
   'tpope/vim-fugitive',
   'catppuccin/nvim',
   'tpope/vim-rhubarb',

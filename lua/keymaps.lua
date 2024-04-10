@@ -4,6 +4,10 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("n", "<F2>", function()
+  vim.cmd("bot 10 new | term java " .. vim.fn.expand "%")
+end, { silent = true })
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
