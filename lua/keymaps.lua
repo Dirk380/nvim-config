@@ -1,5 +1,30 @@
 -- [[ Basic Keymaps ]]
---Quick close file
+-- Compile main class of java project
+vim.keymap.set("n", "<F3>", function()
+  local classPath = vim.api.nvim_buf_get_name(0)
+  local parts = {}
+  for part in classPath:gmatch("[^/]+") do
+    table.insert(parts, part)
+  end
+  local class_with_java = parts[#parts]
+  local className = class_with_java:gsub("%.java", "")
+  local current_buffer = vim.fn.expand '%:p'
+  local file = io.open(current_buffer, "r")
+  if file then
+    local first_line = file:read("*line")
+    local without_package = string.gsub(first_line, "package", "")
+    local without_colum = string.gsub(without_package, ";", "")
+    local command_var = without_colum .. "." .. className
+    local trimmend_line = command_var:gsub("^%s*", "")
+    vim.cmd(':! mvn compile exec:java -q -Dexec.mainClass="' .. trimmend_line .. '"')
+    file:close()
+  else
+    print("Error: Unable to open file")
+  end
+end)
+
+
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
