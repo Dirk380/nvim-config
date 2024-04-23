@@ -7,19 +7,11 @@
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
+
+  'lewis6991/gitsigns.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-pack/nvim-spectre',
   'vim-test/vim-test',
-  {
-    'nvim-neotest/neotest',
-    dependencies = {
-      'nvim-neotest/nvim-nio',
-      'nvim-lua/plenary.nvim',
-      'antoinemadec/FixCursorHold.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'rcasia/neotest-java',
-    },
-  },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {

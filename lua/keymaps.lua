@@ -1,29 +1,4 @@
 -- [[ Basic Keymaps ]]
--- Compile main class of java project
-vim.keymap.set("n", "<F3>", function()
-  local classPath = vim.api.nvim_buf_get_name(0)
-  local parts = {}
-  for part in classPath:gmatch("[^/]+") do
-    table.insert(parts, part)
-  end
-  local class_with_java = parts[#parts]
-  local className = class_with_java:gsub("%.java", "")
-  local current_buffer = vim.fn.expand '%:p'
-  local file = io.open(current_buffer, "r")
-  if file then
-    local first_line = file:read("*line")
-    local without_package = string.gsub(first_line, "package", "")
-    local without_colum = string.gsub(without_package, ";", "")
-    local command_var = without_colum .. "." .. className
-    local trimmend_line = command_var:gsub("^%s*", "")
-    vim.cmd(':! mvn compile exec:java -q -Dexec.mainClass="' .. trimmend_line .. '"')
-    file:close()
-  else
-    print("Error: Unable to open file")
-  end
-end)
-
-
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 local keymap = vim.api.nvim_set_keymap
@@ -77,7 +52,8 @@ vim.keymap.set("n", "<F5>", function()
 end, { silent = true })
 
 vim.keymap.set("n", "<F6>", function()
-  vim.cmd(":! mvn compile package -DskipTests=true && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
+  -- vim.cmd(":! mvn compile package -DskipTests=true && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
+  vim.cmd(":! gradle bootRun -x test")
 end, { silent = true })
 
 -- Neorg keymaps
@@ -86,39 +62,6 @@ vim.keymap.set('n', '<leader>no', ":Neorg workspace notes<cr>", opts)
 local dap = require('dap')
 vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, {})
 vim.keymap.set('n', '<leader>dc', dap.continue, {})
---Neotest keymaps
-vim.keymap.set('n', '<leader>nf', function()
-  require('neotest').run.run(vim.fn.expand '%')
-end)
-vim.keymap.set('n', '<leader>nT',
-  function()
-    require('neotest').run.run(vim.uv.cwd())
-  end)
-vim.keymap.set('n', '<leader>nn',
-  function()
-    require('neotest').run.run()
-  end)
-vim.keymap.set('n', '<leader>nl',
-  function()
-    require('neotest').run.run_last()
-  end)
-vim.keymap.set('n', '<leader>ns',
-  function()
-    require('neotest').summary.toggle()
-  end)
-vim.keymap.set('n', '<leader>no',
-  function()
-    require('neotest').output.open { enter = true, auto_close = true }
-  end)
-vim.keymap.set('n', '<leader>nO',
-  function()
-    require('neotest').output_panel.toggle()
-  end)
-vim.keymap.set('n', '<leader>nS',
-  function()
-    require('neotest').run.stop()
-  end)
-
 -- Pi-test keymap
 vim.keymap.set('n', '<leader>pm', ':! mvn org.pitest:pitest-maven:mutationCoverage<CR>')
 -- Vim test keymaps

@@ -132,6 +132,39 @@ local function jdtls_on_attach(client, bufnr)
     enable_codelens(bufnr)
   end
 
+  -- Compile main class of java project
+  vim.keymap.set("n", "<F3>", function()
+    local classPath = vim.api.nvim_buf_get_name(0)
+    local parts = {}
+    for part in classPath:gmatch("[^/]+") do
+      table.insert(parts, part)
+    end
+    local class_with_java = parts[#parts]
+    local className = class_with_java:gsub("%.java", "")
+    local current_buffer = vim.fn.expand '%:p'
+    local file = io.open(current_buffer, "r")
+    if file then
+      local first_line = file:read("*line")
+      local without_package = string.gsub(first_line, "package", "")
+      local without_colum = string.gsub(without_package, ";", "")
+      local command_var = without_colum .. "." .. className
+      local trimmend_line = command_var:gsub("^%s*", "")
+      vim.cmd(':! mvn compile exec:java -q -Dexec.mainClass="' .. trimmend_line .. '"')
+      file:close()
+    else
+      print("Error: Unable to open file")
+    end
+  end)
+
+  -- Diagnostic keymaps
+  vim.keymap.set('n', '<leader>lp', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+  vim.keymap.set('n', '<leader>ln', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+
+
+
   -- The following mappings are based on the suggested usage of nvim-jdtls
   -- https://github.com/mfussenegger/nvim-jdtls#usage
 
