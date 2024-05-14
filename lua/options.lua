@@ -39,4 +39,6 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
 -- vim: ts=2 sts=2 sw=2 et
