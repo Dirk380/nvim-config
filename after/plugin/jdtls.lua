@@ -133,6 +133,8 @@ local function jdtls_on_attach(client, bufnr)
   end
 
   -- Compile main class of java project
+  --
+  -- "%p print de current filename, goede voor refractor
   vim.keymap.set("n", "<F3>", function()
     local classPath = vim.api.nvim_buf_get_name(0)
     local parts = {}
