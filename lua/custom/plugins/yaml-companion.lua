@@ -17,12 +17,20 @@ return {
         -- not loaded automatically, manually select with
         -- :Telescope yaml_schema
         {
-          name = 'Default Kubernetes',
+          name = 'Helm yaml file',
+          uri = 'https://json.schemastore.org/chart.json',
+        },
+        {
+          name = 'Kubernetes objects',
           uri = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.0/all.json',
         },
         {
           name = 'Argo CD Application',
           uri = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
+        },
+        {
+          name = 'Argo Workflows',
+          uri = 'https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/jsonschema/schema.json',
         },
         {
           name = 'SealedSecret',
