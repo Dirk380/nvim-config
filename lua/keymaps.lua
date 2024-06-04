@@ -70,4 +70,8 @@ vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
 vim.keymap.set('n', '<leader>[[', 'z=')
 vim.keymap.set('n', '<F3>', ':set invspell<CR>', { noremap = true, silent = true })
 
+--Neogit
+vim.keymap.set('n', '<leader>gg', ':Neogit<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ns', ':DiffviewOpen<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>nc', ':DiffviewClose<CR>', { noremap = true, silent = true })
 -- vim: ts=2 sts=2 sw=2 et

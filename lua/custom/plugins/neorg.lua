@@ -19,6 +19,7 @@ return {
                 politie = '~/notes/politie-notes/',
                 persoonlijk = '~/notes/persoonlijk-notes/',
                 cyber = '~/notes/cyber-sec/',
+                cdaas = '~/notes/cdaas',
               },
               default_workspace = 'notes',
             },
