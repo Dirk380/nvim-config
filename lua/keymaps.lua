@@ -11,7 +11,6 @@ end, { silent = true })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set('n', '<leader>ff', ':Format<CR>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -72,6 +71,15 @@ vim.keymap.set('n', '<F3>', ':set invspell<CR>', { noremap = true, silent = true
 
 --Neogit
 vim.keymap.set('n', '<leader>gg', ':Neogit<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>ns', ':DiffviewOpen<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>nc', ':DiffviewClose<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>dv', ':DiffviewOpen<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>ys', ':Telescope yaml_schema<CR>')
+vim.keymap.set('n', '<leader>yc', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>')
+
+-- Obsidian
+vim.keymap.set('n', '<leader>nn', ':ObsidianNew<CR>')
+vim.keymap.set('n', '<leader>ns', ':ObsidianSearch<CR>')
+
 -- vim: ts=2 sts=2 sw=2 et
+--
