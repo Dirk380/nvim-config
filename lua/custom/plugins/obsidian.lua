@@ -219,7 +219,7 @@ return {
     -- 1. "current" (the default) - to always open in the current window
     -- 2. "vsplit" - to open in a vertical split if there's not already a vertical split
     -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
-    open_notes_in = 'vsplit',
+    open_notes_in = 'current',
 
     -- Optional, define your own callbacks to further customize behavior.
     callbacks = {
