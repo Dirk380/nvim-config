@@ -1,4 +1,27 @@
 -- [[ Basic Keymaps ]]
+vim.keymap.set('n', '<F12>', function()
+  --Current buffer open en eerste lijn pakken + servicename
+  local classPath = vim.api.nvim_buf_get_name(0)
+  local parts = {}
+  for part in classPath:gmatch '[^/]+' do
+    table.insert(parts, part)
+  end
+  local class_with_java = parts[#parts]
+  local className = class_with_java:gsub('%.java', '')
+  local current_buffer = vim.fn.expand '%:p'
+  local file = io.open(current_buffer, 'r')
+  if file then
+    local first_line = file:read '*line'
+    local without_package = string.gsub(first_line, 'package', '')
+    local without_colum = string.gsub(without_package, ';', '')
+    local command_var = without_colum .. '.' .. className
+    local trimmend_line = command_var:gsub('^%s*', '')
+    vim.cmd(':! mvn compile exec:java -e -q -Dexec.mainClass="' .. trimmend_line .. '"')
+    file:close()
+  else
+    print 'Error: Unable to open file'
+  end
+end)
 
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 local keymap = vim.api.nvim_set_keymap
@@ -52,12 +75,9 @@ end, { silent = true })
 
 vim.keymap.set('n', '<F6>', function()
   -- vim.cmd(":! mvn compile package -DskipTests=true && java -jar target/onboarder-0.0.1-SNAPSHOT.jar")
-  vim.cmd ':! gradle bootRun -x test'
+  vim.cmd ':! mvn clean install -Dfrontend.skip -DskipTests && java -jar target/*-SNAPSHOT.jar --spring.profiles.active=localhost '
 end, { silent = true })
 
--- Neorg keymaps
-vim.keymap.set('n', '<leader>no', ':Neorg workspace notes<cr>', opts)
--- DAP keybinds
 -- Pi-test keymap
 vim.keymap.set('n', '<leader>pm', ':! mvn org.pitest:pitest-maven:mutationCoverage<CR>')
 -- Vim test keymaps
@@ -65,7 +85,7 @@ vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>tf', ':TestFile<CR>')
 vim.keymap.set('n', '<leader>ts', ':TestSuite<CR>')
 vim.keymap.set('n', '<leader>tl', ':TestLast<CR>')
-
+-- Vim spellcheck
 vim.keymap.set('n', '<leader>[[', 'z=')
 vim.keymap.set('n', '<F3>', ':set invspell<CR>', { noremap = true, silent = true })
 
@@ -80,6 +100,10 @@ vim.keymap.set('n', '<leader>yc', ':lua print(vim.inspect(vim.lsp.get_active_cli
 -- Obsidian
 vim.keymap.set('n', '<leader>nn', ':ObsidianNew<CR>')
 vim.keymap.set('n', '<leader>ns', ':ObsidianSearch<CR>')
+-- Nvim tree
+
+vim.keymap.set('n', '<leader>to', ':NvimTreeOpen<CR>')
+vim.keymap.set('n', '<leader>tc', ':NvimTreeClose<CR>')
 
 -- vim: ts=2 sts=2 sw=2 et
 --

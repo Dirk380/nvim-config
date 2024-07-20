@@ -23,7 +23,7 @@ return {
     workspaces = {
       {
         name = 'cyber',
-        path = '~/obsidian',
+        path = '~/OneDrive/obsidian',
       },
     },
 

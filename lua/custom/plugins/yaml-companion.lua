@@ -34,6 +34,10 @@ return {
           name = 'Gitlab',
           uri = 'https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json',
         },
+        {
+          name = 'Helm file',
+          uri = 'https://json.schemastore.org/chart.json',
+        },
       },
 
       lspconfig = {
@@ -53,6 +57,7 @@ return {
             schemas = {
               -- ['https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/jsonschema/schema.json'] = '*.yaml',
               ['https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.10/all.json'] = '*.yaml',
+              ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '.*.yml',
             },
             -- schemas = require('schemastore').yaml.schemas {
             --   select = {

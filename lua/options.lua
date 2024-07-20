@@ -1,4 +1,13 @@
 -- [[ Setting options ]]
+-- Set java format
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'java',
+  callback = function()
+    vim.bo.formatprg = 'google-java-format -'
+  end,
+})
+
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
@@ -6,9 +15,6 @@
 -- Make line numbers defaults
 vim.opt.relativenumber = true
 vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -16,6 +22,9 @@ vim.opt.swapfile = false
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
+
+-- Indent rules
+vim.opt.preserveindent = true
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
