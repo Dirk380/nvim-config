@@ -1,13 +1,6 @@
 -- [[ Setting options ]]
 -- Set java format
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'java',
-  callback = function()
-    vim.bo.formatprg = 'google-java-format -'
-  end,
-})
-
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
@@ -15,6 +8,9 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Make line numbers defaults
 vim.opt.relativenumber = true
 vim.opt.number = true
+-- Indent rules
+vim.o.expandtab = false
+vim.o.tabstop = 1
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
